@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miniquiz</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:800px;margin:20px auto;padding:20px}
+.question{margin:15px 0;padding:12px;border:1px solid #ddd;border-radius:8px}
+button{padding:10px 16px}
+</style>
+</head>
+<body>
+<h1>Miniquiz „Jakim jesteœ odkrywc¹ wiedzy?”</h1>
+<form id="quiz">
+<div class="question"><p>1. Gdy dostajesz nowe zadanie:</p>
+<label><input type="radio" name="q1" value="A"> Analizujê problem</label><br>
+<label><input type="radio" name="q1" value="B"> Wymyœlam pomys³y</label><br>
+<label><input type="radio" name="q1" value="C"> Wspó³pracujê z innymi</label><br>
+<label><input type="radio" name="q1" value="D"> Dzia³am od razu</label></div>
+
+<div class="question"><p>2. Najciekawsze zajêcie:</p>
+<label><input type="radio" name="q2" value="A"> Zagadki i eksperymenty</label><br>
+<label><input type="radio" name="q2" value="B"> Tworzenie</label><br>
+<label><input type="radio" name="q2" value="C"> Organizowanie wydarzeñ</label><br>
+<label><input type="radio" name="q2" value="D"> Budowanie i projektowanie</label></div>
+
+<div class="question"><p>3. Na projekcie:</p>
+<label><input type="radio" name="q3" value="A"> Analizujê informacje</label><br>
+<label><input type="radio" name="q3" value="B"> Dbam o kreatywnoœæ</label><br>
+<label><input type="radio" name="q3" value="C"> Koordynujê zespó³</label><br>
+<label><input type="radio" name="q3" value="D"> Wykonujê zadania praktyczne</label></div>
+
+<div class="question"><p>4. Motywuje mnie:</p>
+<label><input type="radio" name="q4" value="A"> Zrozumienie œwiata</label><br>
+<label><input type="radio" name="q4" value="B"> Wyra¿anie siebie</label><br>
+<label><input type="radio" name="q4" value="C"> Wspólny cel</label><br>
+<label><input type="radio" name="q4" value="D"> Widoczne efekty</label></div>
+
+<div class="question"><p>5. W wolnym czasie:</p>
+<label><input type="radio" name="q5" value="A"> Odkrywam ciekawostki</label><br>
+<label><input type="radio" name="q5" value="B"> Tworzê</label><br>
+<label><input type="radio" name="q5" value="C"> Spotykam siê z ludŸmi</label><br>
+<label><input type="radio" name="q5" value="D"> Dzia³am aktywnie</label></div>
+
+<div class="question"><p>6. Najlepiej mnie opisuje:</p>
+<label><input type="radio" name="q6" value="A"> Lubiê dociekaæ</label><br>
+<label><input type="radio" name="q6" value="B"> Mam wiele pomys³ów</label><br>
+<label><input type="radio" name="q6" value="C"> Dobrze pracujê w grupie</label><br>
+<label><input type="radio" name="q6" value="D"> Uczê siê przez dzia³anie</label></div>
+
+<button type="button" onclick="showResult()">Zobacz wynik</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+function showResult(){
+ let c={A:0,B:0,C:0,D:0};
+ for(let i=1;i<=6;i++){
+  let a=document.querySelector('input[name=q'+i+']:checked');
+  if(!a){alert('Odpowiedz na wszystkie pytania'); return;}
+  c[a.value]++;
+ }
+ let best='A';
+ ['B','C','D'].forEach(k=>{if(c[k]>c[best]) best=k;});
+ const txt={
+ A:'?? Odkrywca – lubisz analizowaæ, badaæ i rozwi¹zywaæ problemy.',
+ B:'?? Twórca – cenisz kreatywnoœæ i nowe pomys³y.',
+ C:'?? Lider wspó³pracy – dobrze czujesz siê w pracy z ludŸmi.',
+ D:'?? Praktyk – lubisz konkretne dzia³ania i rezultaty.'
+ };
+ document.getElementById('result').innerHTML='<h2>Twój wynik</h2><p>'+txt[best]+'</p>';
+}
+</script>
+</body>
+</html>
